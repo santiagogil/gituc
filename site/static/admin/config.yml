@@ -1,0 +1,92 @@
+backend:
+  name: git-gateway
+
+media_folder: "site/static/img" # Folder where user uploaded files should go
+public_folder: "img"
+
+collections: # A list of collections the CMS should be able to edit
+  - name: "evento" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Evento" # Used in the UI, ie.: "New Post"
+    folder: "site/content/evento" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: "Título", name: "title", widget: "string", hint: "Lo ideal es que sea único."}
+      - {label: "Fecha de publicación", name: "date", widget: "datetime"}
+      - label: "Etiquetas"
+        name: "tags"
+        widget: "list"
+        hint: "Pensá en palabras clave que ayuden al interesado a encontrar el evento"
+      - {label: "Lugar", name: "lugar", widget: "string", hint: "Sólo el nombre del lugar. Más abajo hay campos para especificar la dirección y otros datos."}
+      - {label: "Fecha y Hora", name: "expirydate", widget: "datetime"}
+      - {label: "Descripción", name: "description", widget: "text", hint: "Esta es una descripción breve de sólo texto que aparece en resultados de búsqueda y redes sociales. Aquí es importante tener en cuenta la primera impresión. Es el texto que determina si el usuario va a hacer click para saber más o seguirá de largo."}
+      - {label: "Contenido", name: "body", widget: "markdown", hint: "Este es el espacio para explayarse, generar interés y compartir material (audio, video, etc.) que permita ir palpitando el evento."}
+      - label: "Ubicacion"
+        name: "location"
+        widget: "object"
+        hint: "Es algo tedioso completar todos los datos, pero es lo que permite crear resultados enriquecidos en los resultados de búsqueda de google mejorando mucho el posicionamiento y la experiencia de usuario"
+        fields:
+          - {label: "Type", name: "@type", widget: "hidden", default: "Place"}
+          - label: "Direccion"
+            name: "address"
+            widget: "object"
+            fields: 
+              - {label: "Type", name: "@type", widget: "hidden", default: "PostalAddress"}
+              - {label: "Calle y numero", name: "streetAddress", widget: "string"}
+              - {label: "Localidad", name: "addressLocality", widget: "string"}
+              - {label: "Codigo postal", name: "postalCode", widget: "string"}
+              - {label: "Provincia", name: "addressRegion", widget: "string"}
+              - {label: "Address Country", name: "addressCountry", widget: "hidden", default: "AR"}
+      - label: "Imagenes"
+        name: "images"
+        widget: "list"
+        hint: "La primera de estas imágenes es la que aparecerá en resultados de búsqueda y redes sociales."
+        field: {label: Imagen, name: image, widget: image}
+  - name: "taller" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Talleres" # Used in the UI, ie.: "New Post"
+    folder: "site/content/taller" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Fecha de publicación", name: "date", widget: "datetime"}
+      - label: "Etiquetas"
+        name: "tags"
+        widget: "list"
+      - label: "Location"
+        name: "location"
+        widget: "relation"
+        collection: "poi"
+        valueField: "title"
+      - label: "Horarios"
+        name: "fixture"
+        widget: "list"
+        fields:
+        - {label: "Día", name: "day", widget: "string"}
+        - {label: "Desde", name: "hourstart", widget: "string"}
+        - {label: "A", name: "hourend", widget: "string", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Imagenes og"
+        name: "images"
+        widget: "list"
+        field: {label: Image, name: image, widget: image}
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "site/content/_index.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Subtitle, name: subtitle, widget: string}
+          - {label: Image, name: image, widget: image}
+          - {label: "Blurb", name: blurb, widget: object, fields: [
+              {label: "Heading", name: "heading", widget: string},
+              {label: "Text", name: "text", widget: "text"}]}
+          - {label: "Intro", name: intro, widget: object, fields: [
+              {label: "Heading", name: "heading", widget: string},
+              {label: "Text", name: "text", widget: "text"}]}
+          - {label: "Products", name: products, widget: list, fields: [
+              {label: "Image", name: "image", widget: "image"},
+              {label: "Text", name: "text", widget: "text"}]}
+          - {label: "Values", name: "values", widget: "object", fields: [
+              {label: "Heading", name: "heading", widget: string},
+              {label: "Text", name: "text", widget: "text"}]}

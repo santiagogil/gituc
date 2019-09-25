@@ -1,0 +1,10 @@
+baseurl: "https://gituc.com/"
+DefaultContentLanguage: "es"
+languageCode: "es-ar"
+title: "GITUC"
+params:
+  description: Grupo de Investigacion en Turismo Comunitario
+  images:
+  - '/img/quilt2.png'
+  title: GITUC
+googleAnalytics: 

@@ -1,0 +1,22 @@
+{{ if gt .collection 0 }}
+{{ $slug := (index .collection 0).Type}}
+<div class="pb4">
+	<div class="ph3 mw7 center">
+    <h2 class="f1 bold lh-title mb3 ml3 tight">{{ .title }}</h1>
+
+		<div class="w-100 flex-ns mhn1-ns flex-wrap mb3">
+			{{ range first 4 .collection }}
+				<div class="ph1-ns w-50-ns flex">
+					{{ .Render "li" }}
+				</div>
+			{{ end }}
+		</div>
+    {{ if gt .collection 4 }}
+		<div class="tc">
+      <a href="/{{ $slug }}/" class="btn raise sans-serif asc loose white bg-black">Ver mas {{ .title }}</a>
+		</div>
+    {{ end }}
+
+	</div>
+</div>
+{{ end }}
