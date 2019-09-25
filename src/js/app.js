@@ -7,20 +7,20 @@ var lozad = require('lozad')
   window.addEventListener('load', () => {
       observer.observe()
 
-      let sidebar = document.getElementById('sidebar')
-      let hamburger = document.getElementById('hamburger')
-      let close = document.getElementById('close')
+  //     let sidebar = document.getElementById('sidebar')
+  //     let hamburger = document.getElementById('hamburger')
+  //     let close = document.getElementById('close')
 
-  hamburger.addEventListener('click', event => {
-      event.preventDefault()
-      sidebar.classList.toggle('transform-off')
-  })
+  // hamburger.addEventListener('click', event => {
+  //     event.preventDefault()
+  //     sidebar.classList.toggle('transform-off')
+  // })
 
-  close.addEventListener('click', event => {
-      event.preventDefault()
-      hamburger.style.transform = ''
-      sidebar.classList.toggle('transform-off')
-  })
+  // close.addEventListener('click', event => {
+  //     event.preventDefault()
+  //     hamburger.style.transform = ''
+  //     sidebar.classList.toggle('transform-off')
+  // })
     let share = document.getElementById('web-share')
     let url = window.location.href
     let title = document.title
