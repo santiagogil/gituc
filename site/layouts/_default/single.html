@@ -1,8 +1,12 @@
 {{ define "main" }}
 
-<div class='pa2 mw6 center cms'>
+<div class='pa3 mw6 center cms'>
   <h1 class='bold mb3'>{{.Title}}</h1>
 {{ .Content }}
+
 </div>
+<div class='pa3 mw6 center'>
 {{ partial "share-buttons.html" . }}
+</div>
+{{ partial "svg.html" }}
 {{ end }}
